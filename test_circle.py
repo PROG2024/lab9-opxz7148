@@ -62,4 +62,17 @@ class CircleTest(unittest.TestCase):
         new_circle = self.c0.add_area(Circle(0))
         self.assertEqual(0, new_circle.get_area())
 
+    def test_circle_constructor_handle_invalid_value(self):
+        """Test that does ValueError raise when pass invalid radius parameter to circle parameter"""
+
+        # Test when negative value pass into constructor
+        with self.assertRaises(ValueError):
+            c = Circle(-1)
+
+        # Test when non number value pass into constructor
+        with self.assertRaises(TypeError):
+            c = Circle('1')
+
+        with self.assertRaises(TypeError):
+            c = Circle(None)
 
