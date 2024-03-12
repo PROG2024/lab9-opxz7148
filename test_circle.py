@@ -22,7 +22,7 @@ class CircleTest(unittest.TestCase):
         self.c4 = Circle(4)
 
     def test_add_area_with_typical_radius_value(self):
-        """Testing """
+        """Test adding area with typical radius value """
 
         precise = 7
 
@@ -46,4 +46,20 @@ class CircleTest(unittest.TestCase):
 
         new_circle = self.c3.add_area(self.c2)
         self.assertAlmostEqual(new_circle.get_area(), self.c2.get_area() + self.c3.get_area(), precise)
+
+    def test_adding_circle_that_has_0_radius(self):
+        """Edge case: Test adding circle where one of circle has 0 radius"""
+
+        # Test where adding circle with 0 radius and circle with float value  radius
+        new_circle = self.c0.add_area(self.c1)
+        self.assertEqual(self.c1.get_area(), new_circle.get_area())
+
+        # Test where adding circle with 0 radius and circle with integer value  radius
+        new_circle = self.c0.add_area(self.c3)
+        self.assertEqual(self.c3.get_area(), new_circle.get_area())
+
+        # Test adding 2 circle with 0 radius
+        new_circle = self.c0.add_area(Circle(0))
+        self.assertEqual(0, new_circle.get_area())
+
 
