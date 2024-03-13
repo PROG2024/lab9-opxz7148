@@ -9,6 +9,11 @@ class Circle:
         
         :param radius: radius of the circle, may be zero.
         :raises ValueError: if radius is negative.
+
+        >>> c = Circle(-1)
+        Traceback (most recent call last):
+        ...
+        ValueError: radius must be non-negative
         """
         if radius < 0:
             raise ValueError("radius must be non-negative")
