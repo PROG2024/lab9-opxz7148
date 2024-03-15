@@ -11,12 +11,25 @@
 
 class Counter:
 
-    def __init__(self):
-        self.__count = 0
+    SINGLETON = None
 
+    def __new__(cls, *args, **kwargs):
+
+        if not cls.SINGLETON:
+            cls.SINGLETON = super().__new__(cls)
+            cls.SINGLETON.__count = 0
+            return cls.SINGLETON
+        else:
+            return cls.SINGLETON
 
     def __str__(self):
         return f"{self.__count}"
 
-    #TODO write count property
-    #TODO write increment method
+    def increment(self):
+        self.__count += 1
+        return self.__count
+
+    @property
+    def count(self):
+        return self.__count
+
